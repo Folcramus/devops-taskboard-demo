@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#102a58">
+  <title>DevOps TaskBoard — учебное приложение</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="kicker"><span class="live-dot"></span> DEVOPS WORKSHOP · LIVE DEMO</div>
+      <div class="hero-main"><div><h1>Task<span>Board</span></h1><p>Один проект — весь путь от git push до работающего сервера.</p></div><div class="hero-logo">{ / }</div></div>
+      <div class="tech-tags"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>GitHub Actions</span></div>
+    </div>
+  </header>
+  <main class="wrap content">
+    <div class="row top-row"><div><h2>Панель команды</h2><p class="muted">Задачи хранятся в базе данных и остаются после обновления контейнеров.</p></div><span class="status-pill" id="health-status">◌ Проверка сервиса</span></div>
+    <section class="stats" aria-label="Показатели">
+      <article class="stat"><div class="stat-name">Всего задач</div><div class="stat-value" id="total">0</div><div class="stat-note">В базе данных</div></article>
+      <article class="stat"><div class="stat-name">В работе</div><div class="stat-value" id="active">0</div><div class="stat-note">Ожидают выполнения</div></article>
+      <article class="stat"><div class="stat-name">Выполнено</div><div class="stat-value" id="completed">0</div><div class="stat-note">Готовые задачи</div></article>
+    </section>
+    <section class="panel" aria-label="Задачи">
+      <div class="row panel-head"><div><h3>Список задач</h3><p class="muted small">Добавляйте, завершайте и удаляйте задачи</p></div><div class="release">RELEASE <strong id="version">—</strong></div></div>
+      <form id="create-form" class="task-form">
+        <label class="sr-only" for="task-title">Название задачи</label><input type="text" id="task-title" placeholder="Например: настроить CI/CD" maxlength="160" required>
+        <label class="sr-only" for="priority">Приоритет</label><select id="priority"><option value="normal">Обычный</option><option value="high">Высокий</option><option value="low">Низкий</option></select>
+        <button type="submit" class="primary">+ Добавить</button>
+      </form>
+      <p class="message" id="message" role="status" aria-live="polite"></p>
+      <div class="tabs" role="group" aria-label="Фильтр задач"><button class="tab selected" data-filter="all" type="button">Все</button><button class="tab" data-filter="active" type="button">В работе</button><button class="tab" data-filter="done" type="button">Выполнено</button></div>
+      <ul id="tasks" class="tasks" aria-live="polite"></ul>
+      <div class="empty" id="empty" hidden>Здесь пока нет задач. Добавьте первую!</div>
+      <div class="progress-label"><span>Прогресс команды</span><strong id="progress-label">0%</strong></div><div class="progress"><div id="progress" class="progress-fill"></div></div>
+    </section>
+    <footer><div><strong>DevOps Demo</strong><span>Учебное приложение без авторизации</span></div><div><a href="/docs" target="_blank" rel="noopener">Swagger API ↗</a><a href="/readyz" target="_blank" rel="noopener">Readiness ↗</a></div></footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.env
+.release.env
+.previous.env
+.release.pending.*
+.deploy.lock
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.db
+*.sqlite3
+.DS_Store
